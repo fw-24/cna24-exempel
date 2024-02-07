@@ -5,7 +5,7 @@ info:
   description: API to manage bikes
 servers:
   - url: http://localhost:3000/api
-  - url: https://cna24-exempel-npwvrrfpl-welandfrs-projects.vercel.app/api
+  - url: https://upgraded-giggle.vercel.app/api
 paths:
   /bikes:
     get:
