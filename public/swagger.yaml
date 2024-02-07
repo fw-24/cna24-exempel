@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: Bike API
+  version: 1.0.0
+  description: API to manage bikes
+servers:
+  - url: http://localhost:3000/api
+  - url: https://cna24-exempel-npwvrrfpl-welandfrs-projects.vercel.app/api
+paths:
+  /bikes:
+    get:
+      summary: Get all bikes
+      responses:
+        '200':
+          description: A list of bikes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bike'
+    post:
+      summary: Add a new bike
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bike'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad request
+  /bikes/{id}:
+    get:
+      summary: Get a bike by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the bike to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Bike found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bike'
+        '404':
+          description: Bike not found
+    patch:
+      summary: Update a bike by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the bike to update
+          schema:
+            $ref: '#/components/schemas/Bike'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bike'
+      responses:
+        '200':
+          description: Bike updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bike'
+        '404':
+          description: Bike not found
+    delete:
+      summary: Delete a bike by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the bike to delete
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+        '404':
+          description: Bike not found
+components:
+  schemas:
+    Bike:
+      type: object
+      properties:
+        brand:
+          type: string
+        model:
+          type: string
+        price:
+          type: number
+          format: float
