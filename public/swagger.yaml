@@ -3,6 +3,8 @@ info:
   title: Bike API
   version: 1.0.0
   description: API to manage bikes
+  contact:
+    email: welandfr@arcada.fi
 servers:
   - url: http://localhost:3000/api
   - url: https://upgraded-giggle.vercel.app/api
